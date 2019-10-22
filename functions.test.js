@@ -1,5 +1,4 @@
 const functions = require("./functions");
-const axios = require("./functions");
 
 //toBe sum of 2+2
 test("adds 2 + 2 equals 4", () => {
@@ -43,10 +42,20 @@ test("Admin should be in usernames", () => {
 });
 
 // Working with async data
+
+// Promises
 test('user fetched name should be "Leanne Graham"', () => {
   expect.assertions(1); // expect.assertions is used to verify a certain number of assertions are called, this is used when tsesting asyinchronous code, and testing that the promise is called
   // must return the promise. if forget to return, the test completes before the fetch/axios is made
   return functions.fetchUser().then(data => {
     expect(data.name).toEqual("Leanne Graham");
   });
+});
+
+// Async/await
+test('user fetched name should be "Leanne Graham"', async () => {
+  expect.assertions(1); // expect.assertions is used to verify a certain number of assertions are called, this is used when tsesting asyinchronous code, and testing that the promise is called
+
+  const data = await functions.fetchUser();
+  expect(data.name).toEqual("Leanne Graham");
 });
